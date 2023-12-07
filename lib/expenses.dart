@@ -38,14 +38,49 @@ class _ExpensesState extends State<Expenses> {
 
   void _openAddExpenseModal() {
     showCupertinoModalPopup(
-        context: context,
-        builder: (ctx) {
-          return const NewExpenseForm();
-        });
+      context: context,
+      builder: (ctx) => NewExpenseForm(onAddExpense: _addNewExpense),
+    );
+  }
+
+  void _addNewExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+
+  void _removeExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('Gasto eliminado'),
+        duration: const Duration(milliseconds: 350),
+        action: SnackBarAction(
+          label: 'Deshacer',
+          onPressed: () {
+            setState(() {
+              _registeredExpenses.add(expense);
+            });
+          },
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget mainContent = const Center(
+      child: Text('No hay gastos registrados'),
+    );
+
+    if (_registeredExpenses.isNotEmpty) {
+      mainContent = ExpensesList(
+        expenses: _registeredExpenses,
+        removeExpense: _removeExpense,
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mis gastos'),
@@ -67,7 +102,9 @@ class _ExpensesState extends State<Expenses> {
               ),
             ),
           ),
-          Expanded(child: ExpensesList(expenses: _registeredExpenses)),
+          Expanded(
+            child: mainContent,
+          ),
         ],
       ),
     );
