@@ -126,7 +126,7 @@ class _NewExpenseFormState extends State<NewExpenseForm> {
                   children: [
                     Text(
                       _selectedDate == null
-                          ? 'No seleccionada '
+                          ? 'Fecha: '
                           : formatter.format(_selectedDate!),
                     ),
                     IconButton(

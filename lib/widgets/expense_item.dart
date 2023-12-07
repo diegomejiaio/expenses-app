@@ -20,10 +20,11 @@ class ExpenseItem extends StatelessWidget {
                 children: [
                   Text(
                     expense.title,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   Text(
                     categorIcons[expense.category].toString(),
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ],
               ),
@@ -31,10 +32,12 @@ class ExpenseItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('S/ ${expense.amount.toStringAsFixed(2)}'),
+                  Text('- S/ ${expense.amount.toStringAsFixed(2)}',
+                      style: Theme.of(context).textTheme.bodySmall),
                   const Spacer(),
                   const SizedBox(width: 50),
-                  Text(expense.formattedDate),
+                  Text(expense.formattedDate,
+                      style: Theme.of(context).textTheme.bodySmall),
                 ],
               )
             ],
