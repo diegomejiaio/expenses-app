@@ -9,39 +9,40 @@ class ExpenseItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+      margin: Theme.of(context).cardTheme.margin,
       child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    expense.title,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  Text(
-                    categorIcons[expense.category].toString(),
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('- S/ ${expense.amount.toStringAsFixed(2)}',
-                      style: Theme.of(context).textTheme.bodySmall),
-                  const Spacer(),
-                  const SizedBox(width: 50),
-                  Text(expense.formattedDate,
-                      style: Theme.of(context).textTheme.bodySmall),
-                ],
-              )
-            ],
-          )),
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  expense.title,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                Text(
+                  categorIcons[expense.category].toString(),
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('- S/ ${expense.amount.toStringAsFixed(2)}',
+                    style: Theme.of(context).textTheme.bodySmall),
+                const Spacer(),
+                const SizedBox(width: 50),
+                Text(expense.formattedDate,
+                    style: Theme.of(context).textTheme.bodySmall),
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 }

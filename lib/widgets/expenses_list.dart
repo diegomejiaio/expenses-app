@@ -21,10 +21,7 @@ class ExpensesList extends StatelessWidget {
           color: Theme.of(context).colorScheme.error,
           alignment: Alignment.centerRight,
           padding: const EdgeInsets.only(right: 20),
-          margin: const EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 4,
-          ),
+          margin: Theme.of(context).cardTheme.margin!,
           child: const Icon(
             Icons.delete,
             color: Colors.white,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:expenses_app/models/expense.dart';
 import 'package:expenses_app/widgets/expenses_list.dart';
 import 'package:expenses_app/widgets/new_expense.dart';
+import 'package:expenses_app/widgets/chart/chart.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
@@ -50,18 +51,19 @@ class _ExpensesState extends State<Expenses> {
   }
 
   void _removeExpense(Expense expense) {
+    int index = _registeredExpenses.indexOf(expense);
     setState(() {
       _registeredExpenses.remove(expense);
     });
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text('Gasto eliminado'),
-        duration: const Duration(milliseconds: 350),
+        duration: const Duration(milliseconds: 700),
         action: SnackBarAction(
           label: 'Deshacer',
           onPressed: () {
             setState(() {
-              _registeredExpenses.add(expense);
+              _registeredExpenses.insert(index, expense);
             });
           },
         ),
@@ -94,16 +96,25 @@ class _ExpensesState extends State<Expenses> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Card(
-            child: Padding(
-              padding: EdgeInsets.all(80.0),
-              child: Center(
-                child: Text('Gastos Chart'),
-              ),
+          const SizedBox(
+            height: 20,
+          ),
+          Card(
+            color: Theme.of(context).colorScheme.surface,
+            margin: Theme.of(context).cardTheme.margin,
+            child: Center(
+              child: Chart(expenses: _registeredExpenses),
             ),
           ),
           Expanded(
-            child: mainContent,
+            child: Card(
+              color: Theme.of(context).colorScheme.surface,
+              margin: Theme.of(context).cardTheme.margin,
+              child: mainContent,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
           ),
         ],
       ),

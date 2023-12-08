@@ -16,7 +16,7 @@ void main() {
           ),
           cardTheme: const CardTheme().copyWith(
             color: kColorScheme.secondaryContainer,
-            margin: const EdgeInsets.all(16),
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             elevation: 0.5,
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
