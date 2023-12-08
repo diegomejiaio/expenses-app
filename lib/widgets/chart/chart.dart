@@ -31,14 +31,15 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.symmetric(
         vertical: 16,
         horizontal: 8,
       ),
-      width: double.infinity,
-      height: 180,
+      width: 300,
+      height: width < 600 ? 180 : double.infinity,
       child: Column(
         children: [
           Expanded(

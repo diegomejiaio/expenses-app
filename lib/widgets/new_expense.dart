@@ -43,9 +43,7 @@ class _NewExpenseFormState extends State<NewExpenseForm> {
   void _submitForm() {
     final enteredAmount = double.tryParse(_amountController.text);
     final amountIsValid = enteredAmount != null && enteredAmount >= 0;
-    if (_titleController.text.trim().isEmpty ||
-        !amountIsValid ||
-        _selectedDate == null) {
+    if (_titleController.text.trim().isEmpty || !amountIsValid) {
       // show error message
       showDialog(
           context: context,
@@ -67,7 +65,7 @@ class _NewExpenseFormState extends State<NewExpenseForm> {
       Expense(
         title: _titleController.text,
         amount: enteredAmount,
-        date: _selectedDate!,
+        date: _selectedDate ?? DateTime.now(),
         category: _selectedCategory,
       ),
     );

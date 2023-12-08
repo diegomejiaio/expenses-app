@@ -73,6 +73,7 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     Widget mainContent = const Center(
       child: Text('No hay gastos registrados'),
     );
@@ -93,31 +94,57 @@ class _ExpensesState extends State<Expenses> {
           )
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          Card(
-            color: Theme.of(context).colorScheme.surface,
-            margin: Theme.of(context).cardTheme.margin,
-            child: Center(
-              child: Chart(expenses: _registeredExpenses),
+      body: width < 600
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                Card(
+                  color: Theme.of(context).colorScheme.surface,
+                  margin: Theme.of(context).cardTheme.margin,
+                  child: Center(
+                    child: Chart(expenses: _registeredExpenses),
+                  ),
+                ),
+                Expanded(
+                  child: Card(
+                    color: Theme.of(context).colorScheme.surface,
+                    margin: Theme.of(context).cardTheme.margin,
+                    child: mainContent,
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+              ],
+            )
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                Card(
+                  color: Theme.of(context).colorScheme.surface,
+                  margin: Theme.of(context).cardTheme.margin,
+                  child: Center(
+                    child: Chart(expenses: _registeredExpenses),
+                  ),
+                ),
+                Expanded(
+                  child: Card(
+                    color: Theme.of(context).colorScheme.surface,
+                    margin: Theme.of(context).cardTheme.margin,
+                    child: mainContent,
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+              ],
             ),
-          ),
-          Expanded(
-            child: Card(
-              color: Theme.of(context).colorScheme.surface,
-              margin: Theme.of(context).cardTheme.margin,
-              child: mainContent,
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-        ],
-      ),
     );
   }
 }
