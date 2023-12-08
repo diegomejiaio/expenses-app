@@ -81,15 +81,27 @@ class _NewExpenseFormState extends State<NewExpenseForm> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 120),
+      color: Colors.white,
       elevation: 5,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.close),
+                ),
+              ],
+            ),
             const SizedBox(
-              height: 80,
+              height: 8,
             ),
             TextField(
               autofocus: true,
@@ -104,8 +116,10 @@ class _NewExpenseFormState extends State<NewExpenseForm> {
               height: 30,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
+                SizedBox(
+                  width: 150,
                   child: TextField(
                     keyboardType: TextInputType.number,
                     controller: _amountController,
@@ -120,21 +134,22 @@ class _NewExpenseFormState extends State<NewExpenseForm> {
                   width: 10,
                 ),
                 Expanded(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      _selectedDate == null
-                          ? 'Fecha: '
-                          : formatter.format(_selectedDate!),
-                    ),
-                    IconButton(
-                      onPressed: _presentDatePicker,
-                      icon: const Icon(Icons.calendar_month),
-                    ),
-                  ],
-                )),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        _selectedDate == null
+                            ? 'Fecha: '
+                            : formatter.format(_selectedDate!),
+                      ),
+                      IconButton(
+                        onPressed: _presentDatePicker,
+                        icon: const Icon(Icons.calendar_month),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
             const SizedBox(

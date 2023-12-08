@@ -2,7 +2,7 @@ import 'package:expenses_app/expenses.dart';
 import 'package:flutter/material.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
-  seedColor: const Color.fromARGB(255, 187, 0, 250),
+  seedColor: Colors.green,
 );
 void main() {
   runApp(

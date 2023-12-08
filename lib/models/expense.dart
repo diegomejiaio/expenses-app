@@ -1,7 +1,7 @@
 import 'package:uuid/uuid.dart';
 import 'package:intl/intl.dart';
 
-final formatter = DateFormat('dd/MM/yy HH:mm');
+final formatter = DateFormat('dd/MM/yy');
 
 const uuid = Uuid();
 
